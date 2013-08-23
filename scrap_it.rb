@@ -1,14 +1,19 @@
 require 'nokogiri'
 require 'open-uri'
 
-# Get a Nokogiri::HTML::Document for the page we’re interested in...
+
+puts "###### 1"
 
 doc = Nokogiri::HTML(open('http://www.reference.com/example-sentences/abjure'))
 
-# Do funky things with it using Nokogiri::XML::Node methods...
-
-####
-# Search for nodes by xpath
 doc.xpath('//*[@id="sentence_examples"]/div[*]').each do |link|
+  puts link.content unless link.content == "more"
+end
+
+puts "###### 2"
+
+doc = Nokogiri::HTML(open('http://sentence.yourdictionary.com/voracious'))
+
+doc.xpath('/html/body/div[*]/div[*]/div[*]/section[*]/div/ul/li[*]').each do |link|
   puts link.content unless link.content == "more"
 end
