@@ -25,3 +25,11 @@ doc = Nokogiri::HTML(open('http://forbetterenglish.com/index.cgi?page=acd&articl
 doc.xpath('//tr//td[3]').each do |td|
   puts td.text.strip.gsub("\n", ' ').squeeze(' ').gsub(" .", '.')
 end
+
+puts "###### 4"
+
+doc = Nokogiri::HTML(open('http://dictionary.cambridge.org/dictionary/british/ghastly?q=ghastly'))
+
+doc.xpath('//span[@class="eg"]').each do |span|
+  puts span.text
+end
